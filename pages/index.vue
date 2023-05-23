@@ -80,8 +80,10 @@
 export default {
   name: 'IndexPage',
   mounted() {
-    this.$store.commit('initClients');
-      console.log('store', this.$store)
+    const clients = require('~/static/clients.json');
+    this.$store.commit('setClients', clients);
+    const services = require('~/static/services.json');
+    this.$store.commit('setServices', services);
   },
 
 }

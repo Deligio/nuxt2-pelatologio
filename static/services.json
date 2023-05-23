@@ -1,0 +1,39 @@
+[
+    {
+      "client_id": 1,
+      "title": "Service 1",
+      "cost": 100,
+      "comments": "Comments for Service 1"
+    },
+    {
+      "client_id": 1,
+      "title": "Service 2",
+      "cost": 150,
+      "comments": "Comments for Service 2"
+    },
+    {
+      "client_id": 2,
+      "title": "Service 1",
+      "cost": 200,
+      "comments": "Comments for Service 1"
+    },
+    {
+      "client_id": 2,
+      "title": "Service 2",
+      "cost": 250,
+      "comments": "Comments for Service 2"
+    },
+    {
+      "client_id": 3,
+      "title": "Service 1",
+      "cost": 300,
+      "comments": "Comments for Service 1"
+    },
+    {
+      "client_id": 3,
+      "title": "Service 2",
+      "cost": 350,
+      "comments": "Comments for Service 2"
+    }
+]
+  

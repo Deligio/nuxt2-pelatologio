@@ -89,7 +89,12 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Clients',
           to: '/clients'
-        }
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'New Service',
+          to: '/services/new'
+        },
       ],
       miniVariant: false,
       right: true,
