@@ -4,12 +4,13 @@ export const state = () => ({
 });
 
 export const mutations = {
-  initClients(state) {
-    const json_data = require('~/static/clients.json');
-    state.clients = json_data;
-  },
   setClients(state, clients) {
     state.clients = clients;
+  },
+  addClient(state, client) {
+    let max_id = Math.max(...state.clients.map(c => c.id));
+    const newClient = Object.assign({id: ++max_id}, client)
+    state.clients.push(newClient);
   },
   updateClient(state, updatedClient) {
     const index = state.clients.findIndex(client => client.id === updatedClient.id);
