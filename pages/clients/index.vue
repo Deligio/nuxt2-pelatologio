@@ -5,7 +5,8 @@
         :items="clients"
         :search="search"
         item-key="id"
-        @dblclick="viewProfile(item)"
+        item-value="id"
+        @dblclick:row="dbl_click_go_history"
       >
         <template v-slot:item.services="{ item }">
           {{ services.filter(s => s.client_id == item.id).length }}
@@ -61,6 +62,12 @@
         // Redirect to the client's profile page
         this.$router.push(`/clients/${id}`);
       },
+      dbl_click_go_history(event, row){
+        console.log('event', event)
+        console.log('row.item', row.item)
+        console.log('row.item.id', row.item.id)
+        this.$router.push(`/clients/${row.item.id}`);
+      }
     },
   };
   </script>
