@@ -18,19 +18,12 @@
           <v-btn @click="saveService" color="primary">Save</v-btn>
         </v-card-actions>
       </v-card>
-  
-      <v-snackbar
-        v-model="snackbar.show"
-        :color="snackbar.color"
-        :timeout="snackbar.timeout"
-      >
-        {{ snackbar.message }}
-      </v-snackbar>
     </div>
   </template>
   
   <script>
   import { mapState, mapMutations } from 'vuex';
+  import { bus } from '@/assets/js/bus'
   
   export default {
     name: 'new-service-page',
@@ -57,34 +50,31 @@
     methods: {
         ...mapMutations(['addService']),
         saveService() {
-        // Validate and save the service data
-        if (!this.selectedClient || !this.title || !this.cost) {
-            this.showSnackbar('Please fill in all fields.', 'warning');
-            return;
-        }
+          // Validate and save the service data
+          if (!this.selectedClient || !this.title || !this.cost) {
+              this.showSnackbar('Please fill in all fields.', 'warning');
+              return;
+          }
 
-        const newService = {
-            client_id: this.selectedClient,
-            title: this.title,
-            cost: this.cost,
-            comments: this.comments,
-        };
+          const newService = {
+              client_id: this.selectedClient,
+              title: this.title,
+              cost: this.cost,
+              comments: this.comments,
+              created_at: this.created_at,
+          };
 
-        // Perform the save logic here
-        this.addService(newService);
+          // Perform the save logic here
+          this.addService(newService);
 
-        // Reset form fields
-        this.selectedClient = null;
-        this.title = '';
-        this.cost = null;
-        this.comments = '';
-
-        this.showSnackbar('Service saved successfully.', 'success');
-        },
-        showSnackbar(message, color) {
-            this.snackbar.message = message;
-            this.snackbar.color = color;
-            this.snackbar.show = true;
+          // Reset form fields
+          this.selectedClient = null;
+          this.title = '';
+          this.cost = null;
+          this.comments = '';
+          const snackbar = { message: 'Service saved successfully.', color: 'success darken-3'};
+          bus.$emit('open_snackbar', snackbar)
+          this.$router.push({path: '/clients/history/' + newService.client_id, query: null})
         },
     },
     created() {

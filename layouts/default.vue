@@ -68,14 +68,28 @@
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    <v-snackbar
+      v-model="snackbar.show"
+      :color="snackbar.color"
+      :timeout="snackbar.timeout"
+    >
+      {{ snackbar.message }}
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
+import { bus } from '@/assets/js/bus'
 export default {
   name: 'DefaultLayout',
   data () {
     return {
+      snackbar: {
+          show: false,
+          color: 'warning',
+          timeout: 3000,
+          message: '',
+        },
       clipped: false,
       drawer: false,
       fixed: false,
@@ -102,11 +116,20 @@ export default {
       title: 'Vuetify.js'
     }
   },
+  methods: {
+    showSnackbar({message, color}) {
+      this.snackbar.message = message;
+      this.snackbar.color = color;
+      this.snackbar.show = true;
+    },
+  },
   created() {
     const clients = require('~/static/clients.json');
     this.$store.commit('setClients', clients);
     const services = require('~/static/services.json');
     this.$store.commit('setServices', services);
+
+    bus.$on('open_snackbar', this.showSnackbar )
   },
 }
 </script>
