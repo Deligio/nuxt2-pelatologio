@@ -79,12 +79,5 @@
 <script>
 export default {
   name: 'IndexPage',
-  mounted() {
-    const clients = require('~/static/clients.json');
-    this.$store.commit('setClients', clients);
-    const services = require('~/static/services.json');
-    this.$store.commit('setServices', services);
-  },
-
 }
 </script>
