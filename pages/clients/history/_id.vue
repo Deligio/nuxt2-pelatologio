@@ -7,6 +7,7 @@
       :search="search"
       item-key="id"
       :items-per-page="-1"
+      @dblclick:row="edit_service"
     >
       <template v-slot:item.services="{ item }">
         {{ services.filter(s => s.client_id == item.id).length }}
@@ -93,6 +94,10 @@ export default {
     delete_service() {
       this.$store.commit('deleteService', this.delete_dialog.item.id);
       this.delete_dialog.show = false;
+    },
+    edit_service( event, row ) {
+      console.log(`/services/edit/`, row.item)
+      this.$router.push(`/services/edit/${row.item.id}`)
     },
   },
   created() {
