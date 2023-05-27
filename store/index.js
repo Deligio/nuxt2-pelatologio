@@ -22,12 +22,20 @@ export const mutations = {
     state.services = services;
   },
   addService(state, service) {
-    state.services.push(service);
+    let max_id = Math.max(...state.services.map(s => s.id));
+    const newService = Object.assign({id: ++max_id}, service)
+    state.services.push(newService);
   },
   updateService(state, updatedService) {
     const index = state.services.findIndex(service => service.id === updatedService.id);
     if (index !== -1) {
       state.services.splice(index, 1, updatedService);
+    }
+  },
+  deleteService(state, service_id) {
+    const index = state.services.findIndex(service => service.id === service_id);
+    if (index !== -1) {
+      state.services.splice(index, 1);
     }
   },
 };
