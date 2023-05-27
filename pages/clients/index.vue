@@ -57,14 +57,14 @@
     methods: {
       viewServices(id) {
         // Redirect to the client's profile page
-        this.$router.push(`/services/${id}`);
+        this.$router.push(`/clients/history/${id}`);
       },
       viewProfile(id) {
         // Redirect to the client's profile page
-        this.$router.push(`/clients/${id}`);
+        this.$router.push(`/clients/profile/${id}`);
       },
       dbl_click_go_history(event, row){
-        this.$router.push(`/clients/${row.item.id}`);
+        this.$router.push(`/clients/history/${row.item.id}`);
       }
     },
   };
