@@ -33,6 +33,7 @@
   import { mapState, mapMutations } from 'vuex';
   
   export default {
+    name: 'new-service-page',
     computed: {
       ...mapState({
         clients: state => state.clients,
@@ -44,6 +45,7 @@
         title: '',
         cost: null,
         comments: '',
+        created_at: '',
         snackbar: {
           show: false,
           color: 'warning',
@@ -84,6 +86,19 @@
             this.snackbar.color = color;
             this.snackbar.show = true;
         },
+    },
+    created() {
+      const now = new Date();
+      this.created_at = now.toISOString();
+      if (this.$route.query) {
+        console.log('new service copy $route', this.$route);
+        const query = this.$route.query
+        console.log('new service query', query);
+        this.selectedClient = parseInt(query.client_id)
+        this.title = query.title
+        this.cost = query.cost
+        this.comments = query.comments
+      }
     },
   };
   </script>

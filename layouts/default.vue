@@ -91,7 +91,7 @@ export default {
           to: '/clients'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-tab-plus',
           title: 'New Service',
           to: '/services/new'
         },

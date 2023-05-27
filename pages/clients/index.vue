@@ -6,6 +6,7 @@
         :search="search"
         item-key="id"
         item-value="id"
+        :items-per-page="-1"
         @dblclick:row="dbl_click_go_history"
       >
         <template v-slot:item.services="{ item }">
@@ -63,9 +64,6 @@
         this.$router.push(`/clients/${id}`);
       },
       dbl_click_go_history(event, row){
-        console.log('event', event)
-        console.log('row.item', row.item)
-        console.log('row.item.id', row.item.id)
         this.$router.push(`/clients/${row.item.id}`);
       }
     },
