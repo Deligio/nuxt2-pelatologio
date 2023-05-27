@@ -61,18 +61,18 @@
         ...mapMutations(['addService', 'updateService']),
         saveService() {
           // Validate and save the service data
-          if (!this.service.client_id || !this.service.title || !this.service.cost) {
+          if (!this.edited_service.client_id || !this.edited_service.title || !this.edited_service.cost) {
               const snackbar = { message: 'Please fill in all fields.', color: 'warning darken-2'};
               bus.$emit('open_snackbar', snackbar)
               return;
           }
 
           const newService = {
-              client_id: this.service.client_id,
-              title: this.service.title,
-              cost: this.service.cost,
-              comments: this.service.comments,
-              created_at: this.iso8601_to_date(this.service.created_at),
+              client_id: this.edited_service.client_id,
+              title: this.edited_service.title,
+              cost: this.edited_service.cost,
+              comments: this.edited_service.comments,
+              created_at: this.iso8601_to_date(this.edited_service.created_at),
           };
 
           // Perform the save logic here
@@ -83,11 +83,11 @@
           }
 
           // Reset form fields
-          this.service.client_id = null;
-          this.service.title = '';
-          this.service.cost = null;
-          this.service.comments = '';
-          const snackbar = { message: 'Service saved successfully.', color: 'success darken-3'};
+          this.edited_service.client_id = null;
+          this.edited_service.title = '';
+          this.edited_service.cost = null;
+          this.edited_service.comments = '';
+          const snackbar = { message: `Service ${(this.is_edit)?'saved':'added'} successfully.`, color: 'success darken-3'};
           bus.$emit('open_snackbar', snackbar)
           this.$router.push({path: '/clients/history/' + newService.client_id, query: null})
         },
